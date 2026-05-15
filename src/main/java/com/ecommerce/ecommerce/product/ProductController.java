@@ -23,7 +23,10 @@ public class ProductController {
     @ApiResponse(responseCode = "200", description = "상품 목록 조회 성공")
     @GetMapping
     public ResponseEntity<List<ProductResponse>> getProducts() {
-        return ResponseEntity.status(HttpStatus.OK).body(List.of());
+        return ResponseEntity.status(HttpStatus.OK).body(List.of(
+            new ProductResponse(1L, "상품1", 10000, 10),
+            new ProductResponse(2L, "상품2", 20000, 5)
+        ));
     }
 
     // GET /api/products/{productId}
@@ -31,7 +34,9 @@ public class ProductController {
     @ApiResponse(responseCode = "200", description = "상품 상세 조회 성공")
     @GetMapping("/{productId}")
     public ResponseEntity<ProductResponse> getProductDetail(@PathVariable Long productId) {
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+        return ResponseEntity.status(HttpStatus.OK).body(
+            new ProductResponse(1L, "상품1", 10000, 10)
+        );
     }
 
     // GET /api/products/popular
@@ -39,6 +44,9 @@ public class ProductController {
     @ApiResponse(responseCode = "200", description = "인기상품 조회 성공")
     @GetMapping("/popular")
     public ResponseEntity<List<ProductResponse>> getPopularProducts() {
-        return ResponseEntity.status(HttpStatus.OK).body(List.of());
+        return ResponseEntity.status(HttpStatus.OK).body(List.of(
+            new ProductResponse(1L, "상품1", 10000, 10),
+            new ProductResponse(2L, "상품2", 20000, 5)
+        ));
     }
 }

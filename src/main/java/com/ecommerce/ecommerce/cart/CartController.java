@@ -23,7 +23,10 @@ public class CartController {
     @ApiResponse(responseCode = "200", description = "장바구니 조회 성공")
     @GetMapping
     public ResponseEntity<List<CartResponse>> getCart() {
-        return ResponseEntity.status(HttpStatus.OK).body(List.of());
+        return ResponseEntity.status(HttpStatus.OK).body(List.of(
+            new CartResponse(1L, 1L, "상품1", 10000, 2, 20000),
+            new CartResponse(2L, 2L, "상품2", 20000, 1, 20000)
+        ));
     }
 
     // POST /api/carts/items
@@ -31,7 +34,9 @@ public class CartController {
     @ApiResponse(responseCode = "201", description = "장바구니 상품 추가 성공")
     @PostMapping("/items")
     public ResponseEntity<CartResponse> addCartItem(@Valid @RequestBody CartRequest request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(null);
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+            new CartResponse(1L, request.getProductId(), "상품명", 10000, request.getQuantity(), 10000 * request.getQuantity())
+        );
     }
 
     // DELETE /api/carts/items/{cartItemId}

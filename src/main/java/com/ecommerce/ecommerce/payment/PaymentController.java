@@ -23,6 +23,8 @@ public class PaymentController {
     @ApiResponse(responseCode = "200", description = "결제 요청 성공")
     @PostMapping
     public ResponseEntity<PaymentResponse> processPayment(@Valid @RequestBody PaymentRequest paymentRequest) {
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+            new PaymentResponse(1L, paymentRequest.getOrderId(), "SUCCESS")
+        );
     }
 }

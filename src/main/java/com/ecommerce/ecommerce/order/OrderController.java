@@ -21,7 +21,9 @@ public class OrderController {
     @ApiResponse(responseCode = "201", description = "주문 생성 성공")
     @PostMapping
     public ResponseEntity<OrderResponse> createOrder(@Valid @RequestBody OrderRequest orderRequest) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(null);
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+            new OrderResponse(1L, 1L, 30000, OrderStatus.CREATED)
+        );
     }
 
     // GET /api/orders/{orderId}
@@ -29,6 +31,8 @@ public class OrderController {
     @ApiResponse(responseCode = "200", description = "주문 상세 조회 성공")
     @GetMapping("/{orderId}")
     public ResponseEntity<OrderResponse> getOrder(@PathVariable Long orderId) {
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+        return ResponseEntity.status(HttpStatus.OK).body(
+            new OrderResponse(orderId, 1L, 30000, OrderStatus.CREATED)
+        );
     }
 }
