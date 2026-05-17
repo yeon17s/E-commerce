@@ -27,7 +27,7 @@ public class Product {
 
     public void decreaseStock(int quantity) {
         if (quantity <= 0) {
-            throw new BusinessException(ErrorCode.INVALID_REQUEST_BODY);
+            throw new BusinessException(ErrorCode.INVALID_REQUEST);
         }
         else if (this.stock < quantity) {
             throw new BusinessException(ErrorCode.OUT_OF_STOCK);
